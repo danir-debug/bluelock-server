@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueLock Browser - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .home-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .logo {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 32px;
+        }
+
+        .subtitle {
+            color: #7f8c8d;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .features {
+            text-align: left;
+            margin: 30px 0;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .feature {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .feature-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .feature-title {
+            color: #2c3e50;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .feature-desc {
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+
+        .cta-section {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            color: white;
+        }
+
+        .cta-text {
+            margin-bottom: 15px;
+            font-size: 14px;
+        }
+
+        .quick-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .link-btn {
+            background: #3498db;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-size: 12px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+
+        .link-btn:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #ecf0f1;
+            color: #7f8c8d;
+            font-size: 12px;
+        }
+
+        .version {
+            color: #bdc3c7;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .home-container {
+                padding: 30px 20px;
+            }
+
+            .features {
+                grid-template-columns: 1fr;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .logo {
+                font-size: 36px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="home-container">
+        <div class="logo">🌐</div>
+        <h1>BlueLock Browser</h1>
+        <p class="subtitle">A fully functional browser built with HTML, CSS & JavaScript</p>
+
+        <div class="features">
+            <div class="feature">
+                <div class="feature-icon">🔗</div>
+                <div class="feature-title">Web Navigation</div>
+                <div class="feature-desc">Browse any website with full URL support</div>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">⬅️</div>
+                <div class="feature-title">History</div>
+                <div class="feature-desc">Back, Forward, Refresh controls</div>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">🎨</div>
+                <div class="feature-title">Modern UI</div>
+                <div class="feature-desc">Clean and intuitive interface</div>
+            </div>
+
+            <div class="feature">
+                <div class="feature-icon">📱</div>
+                <div class="feature-title">Responsive</div>
+                <div class="feature-desc">Works on desktop and mobile</div>
+            </div>
+        </div>
+
+        <div class="cta-section">
+            <div class="cta-text">✨ Ready to start browsing?</div>
+            <p style="font-size: 12px; margin-bottom: 15px;">Go back to the browser and enter a URL in the address bar</p>
+            <div class="quick-links">
+                <button class="link-btn" onclick="openUrl('https://example.com')">Example.com</button>
+                <button class="link-btn" onclick="openUrl('https://httpbin.org')">HTTPBin</button>
+                <button class="link-btn" onclick="openUrl('https://wikipedia.org')">Wikipedia</button>
+            </div>
+        </div>
+
+        <div class="quick-links">
+            <button class="link-btn" onclick="showHelp()">📖 Help</button>
+            <button class="link-btn" onclick="showAbout()">ℹ️ About</button>
+        </div>
+
+        <div class="footer">
+            <p>BlueLock Browser v1.0.0</p>
+            <div class="version">Created by danir-debug 🚀</div>
+        </div>
+    </div>
+
+    <script>
+        function openUrl(url) {
+            // Message parent window to navigate
+            if (window.parent !== window) {
+                window.parent.postMessage({
+                    type: 'navigate',
+                    url: url
+                }, '*');
+            } else {
+                alert('Please use the address bar in the browser to navigate.\n\nURL: ' + url);
+            }
+        }
+
+        function showHelp() {
+            alert('BlueLock Browser Help\n\n' +
+                '1. Enter a URL in the address bar\n' +
+                '2. Click "Go" or press Enter\n' +
+                '3. Use navigation buttons to browse history\n' +
+                '4. Click Refresh to reload the page\n' +
+                '5. Click Home to return here\n\n' +
+                'Note: Some sites may not load due to CORS restrictions.');
+        }
+
+        function showAbout() {
+            alert('BlueLock Browser v1.0.0\n\n' +
+                'A fully functional browser built with:\n' +
+                '• HTML5\n' +
+                '• CSS3\n' +
+                '• Vanilla JavaScript\n\n' +
+                'Created by danir-debug\n' +
+                'GitHub: danir-debug/bluelock-server');
+        }
+    </script>
+</body>
+</html>
