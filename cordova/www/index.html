@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BlueLock Browser</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="browser-container">
+        <!-- Navbar -->
+        <div class="navbar">
+            <div class="nav-buttons">
+                <button id="backBtn" class="nav-btn" title="Back">← Back</button>
+                <button id="forwardBtn" class="nav-btn" title="Forward">Forward →</button>
+                <button id="refreshBtn" class="nav-btn" title="Refresh">🔄 Refresh</button>
+                <button id="homeBtn" class="nav-btn" title="Home">🏠 Home</button>
+            </div>
+            
+            <div class="address-bar-container">
+                <input 
+                    type="text" 
+                    id="addressBar" 
+                    class="address-bar" 
+                    placeholder="Enter URL (e.g., https://example.com)"
+                    value="https://example.com"
+                >
+                <button id="goBtn" class="go-btn">Go</button>
+            </div>
+            
+            <div class="nav-icons">
+                <button id="settingsBtn" class="icon-btn" title="Settings">⚙️</button>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div class="status-bar">
+            <span id="statusText">Ready</span>
+            <span id="loadingSpinner" class="loading-spinner" style="display: none;">⏳ Loading...</span>
+        </div>
+
+        <!-- Browser Content Area -->
+        <div class="browser-content">
+            <iframe 
+                id="browserFrame" 
+                class="browser-frame"
+                sandbox="allow-same-origin allow-scripts allow-forms allow-popups"
+            ></iframe>
+        </div>
+
+        <!-- Error Modal -->
+        <div id="errorModal" class="modal" style="display: none;">
+            <div class="modal-content">
+                <h2>Error</h2>
+                <p id="errorMessage"></p>
+                <button onclick="closeErrorModal()" class="modal-btn">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="cordova.js"></script>
+    <script src="browser.js"></script>
+</body>
+</html>
